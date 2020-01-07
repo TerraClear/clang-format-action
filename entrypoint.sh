@@ -16,11 +16,11 @@ echo "### $REPO_FULLNAME"
 git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/$REPO_FULLNAME.git
 echo "### Getting branch"
 echo "${GITHUB_REF}"
-BRANCH=${GITHUB_REF#*refs/heads/}
-echo "### git fetch $BRANCH ..."
-git fetch origin $BRANCH
-echo "### Branch: $BRANCH (ref: $GITHUB_REF )"
-git checkout $BRANCH
+#BRANCH=${GITHUB_REF#*refs/heads/}
+echo "### git fetch $GITHUB_BRANCH ..."
+git fetch origin $GITHUB_BRANCH
+echo "### Branch: $GITHUB_BRANCH (ref: $GITHUB_REF )"
+git checkout $GITHUB_BRANCH
 
 echo "## Configuring git author..."
 git config --global user.email "dev@terraclear.com"
@@ -39,5 +39,5 @@ clang-format -style=file -i $SRC
 echo "## Commiting files..."
 git commit -a -m "apply clang-format" || true
 
-echo "## Pushing to $BRANCH"
-git push -u origin $BRANCH
+echo "## Pushing to $GITHUB_BRANCH"
+git push -u origin $GITHUB_BRANCH
