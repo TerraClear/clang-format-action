@@ -30,9 +30,10 @@ git config --global user.name "TerraClear Dev"
 git update-index --assume-unchanged .github/workflows/*
 
 echo "## Running clang-format on C/C++ source"
-pwd
-ls
+
 SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
+
+echo "Applying clang-format to $SRC"
 
 clang-format -style=file -i $SRC
 
