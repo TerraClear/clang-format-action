@@ -31,8 +31,7 @@ pwd
 ls
 SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
 
-echo "## JK not running any of this"
-#clang-format -style=file -i $SRC
+clang-format -style=file -i $SRC
 
 echo "## Commiting files..."
 git commit -a -m "apply clang-format" || true
