@@ -5,6 +5,7 @@ set -eu
 REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
 
 echo "## Initializing git repo..."
+echo $REPO_FULLNAME
 git init
 echo "### Adding git remote..."
 echo "### $REPO_FULLNAME"
@@ -28,7 +29,8 @@ pwd
 ls
 SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\)\$" | cut -f 2)
 
-clang-format -style=file -i $SRC
+echo "## JK not running any of this"
+#clang-format -style=file -i $SRC
 
 echo "## Commiting files..."
 git commit -a -m "apply clang-format" || true
