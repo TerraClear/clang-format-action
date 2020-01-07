@@ -4,6 +4,8 @@ set -eu
 
 REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
 
+echo "RANDOM_STRING = $RANDOM_STRING"
+echo "GITHUB_BRANCH = $GITHUB_BRANCH"
 echo "GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH"
 echo "REPO_FULLNAME = $REPO_FULLNAME"
 
@@ -13,6 +15,7 @@ echo "### Adding git remote..."
 echo "### $REPO_FULLNAME"
 git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/$REPO_FULLNAME.git
 echo "### Getting branch"
+echo "${GITHUB_REF}"
 BRANCH=${GITHUB_REF#*refs/heads/}
 echo "### git fetch $BRANCH ..."
 git fetch origin $BRANCH
