@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM pbarsic/clang-format-action:v1
 
 COPY LICENSE README.md /
 
