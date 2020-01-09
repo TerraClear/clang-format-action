@@ -4,7 +4,7 @@ set -eu
 
 REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
 
-echo "RANDOM_STRING = $RANDOM_STRING"
+echo "Starting clang-format job"
 echo "GITHUB_BRANCH = $GITHUB_BRANCH"
 echo "GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH"
 echo "REPO_FULLNAME = $REPO_FULLNAME"
