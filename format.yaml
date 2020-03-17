@@ -1,0 +1,28 @@
+# The Docker image is a public repo in my pbarsic's
+# personal dockerhub account it was generated from
+# the Dockerfile in the terraclear/clang-format-action
+# github repo
+# Paul Barsic
+# January 2020
+name: clang-format-dockerhub on PR to master
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**.c'
+      - '**.cpp'
+      - '**.h'
+      - '**.hpp'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    timeout-minutes: 10
+
+    steps:
+    - uses: docker://pbarsic/clang-format-action:v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_BRANCH: ${{ github.event.pull_request.head.ref }}
